@@ -29,7 +29,7 @@ async function run(){
     app.use('/leagues', authMiddleware ,leaguesRoutes);
     app.use('/teams', authMiddleware, teamsRoutes);
 
-    process.env.DEVELOPMENT && setLocalEnvs();
+    Boolean(process.env.DEVELOPMENT || true) && setLocalEnvs();
 // Handle requests for routes not handled by static files
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'src/client/build', 'index.html'));

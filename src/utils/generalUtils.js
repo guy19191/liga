@@ -5,7 +5,7 @@ const setLocalEnvs = () => config({override: true, path: path.join(process.cwd()
 const dateToTimestamp = (date) => new Date(date).getTime();
 
 const timestampToDateTime = (timestamp) => {
-    const dateObject = new Date(timestamp); // Or the Date object you have
+    const dateObject = new Date(Number(timestamp); // Or the Date object you have
 
 // Get individual components and format them
     const year = dateObject.getFullYear();
