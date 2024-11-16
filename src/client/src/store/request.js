@@ -1,12 +1,13 @@
 import axios from "axios";
-import https from 'https'
+import https from "https";
+const httpsAuth = new https.Agent({
+    rejectUnauthorized: false
+});
 const axiosInstance = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    httpsAgent: new https.Agent({
-        rejectUnauthorized: false
-    }),
+    httpsAgent: httpsAuth,
 });
     axiosInstance.interceptors.request.use(request => {
         const accessToken = localStorage.getItem('accessToken');

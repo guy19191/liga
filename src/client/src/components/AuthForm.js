@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AuthForm.css';
 import https from "https";
-
+const httpsAuth = new https.Agent({
+    rejectUnauthorized: false
+});
 const AuthForm = ({ loginCheck }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,9 +19,7 @@ const AuthForm = ({ loginCheck }) => {
         setAlert('');
 
         try {
-            const response = await axios.post('auth/v1/signIn', { username, password }, {httpsAgent: new https.Agent({
-                rejectUnauthorized: false
-            })});
+            const response = await axios.post('auth/v1/signIn', { username, password }, {httpsAgent: httpsAuth});
             if (response.status === 200) {
                 localStorage.setItem('accessToken', response.data.accessToken);
                 localStorage.setItem('refreshToken', response.data.refreshToken);

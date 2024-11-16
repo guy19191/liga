@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './AuthForm.css';
 import https from "https";
-
+const httpsAuth = new https.Agent({
+    rejectUnauthorized: false
+});
 const SignupForm = ({ loginCheck }) => {
     const [formData, setFormData] = useState({
         email: '',
@@ -51,18 +53,14 @@ const SignupForm = ({ loginCheck }) => {
                 password: formData.password,
                 firstName: formData.firstName,
                 lastName: formData.lastName
-            },{httpsAgent: new https.Agent({
-                rejectUnauthorized: false
-            })});
+            },{httpsAgent: httpsAuth});
 
             if (response.status === 201) {
                 // Auto-login after successful signup
                 const loginResponse = await axios.post('auth/v1/signIn', {
                     username: formData.email,
                     password: formData.password
-                }, {httpsAgent: new https.Agent({
-                        rejectUnauthorized: false
-                    })});
+                }, {httpsAgent: httpsAuth});
 
                 localStorage.setItem('accessToken', loginResponse.data.accessToken);
                 localStorage.setItem('refreshToken', loginResponse.data.refreshToken);
