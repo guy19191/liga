@@ -1,5 +1,6 @@
 import {AuthManager} from "./authManager.js";
 import {databaseManager} from "./databaseManager.js";
+import {timestampToDateTime} from "../utils/index.js";
 
 export class LigaUsersManager {
     permissionManager;
@@ -23,6 +24,25 @@ export class LigaUsersManager {
             if (!user.nickname) {
                 user.nickname = `${user.firstName} ${user.lastName}`
             }
+            const userExpiredBets = await databaseManager.getInstance().queryUserBets(userId, true);
+            let winRate = 0
+            user.betHistory = userExpiredBets.rows.map(bet => {
+                let points = bet.points
+                const date = timestampToDateTime(bet.date);
+                if (bet.howwins === bet.howWins){
+                    winRate ++;
+                    points *= number(bet.win);
+                }
+                return {
+                    date: date,
+                    points: points,
+                    result: bet.howWins,
+                    game: bet.betName,
+                    bet: bet.howwins
+                }
+            });
+            user.totalBets =  userExpiredBets.rows.length.toString();
+            user.winRate = ((winRate / user.totalBets)/100).toString();
             return user;
         } catch (e) {
             return {};

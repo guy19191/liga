@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { axiosInstance } from "../store/request";
 import './manager-bet-control.css';
+import LeagueManager from './LeagueManager';
 
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -197,6 +198,7 @@ const ManagerBetControl = () => {
 
     return (
         <div className="manager-container">
+                <LeagueManager />
             <h2 className="manager-title">Manager Bet Control</h2>
 
             {error && <div className="error-message">{error}</div>}

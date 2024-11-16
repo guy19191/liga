@@ -39,4 +39,8 @@ export class LeagueManager {
         }
     }
 
+    async insertLeague(name, community = "test"){
+        return databaseManager.getInstance().insertLeague(name, community);
+    }
+
 }

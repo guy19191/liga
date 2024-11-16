@@ -35,8 +35,8 @@ const UserProfile = () => {
                             </div>
                         </div>
                         <div className="stats-section">
-                            <div className="stat-item">אחוז הצלחה: {userData.winRate}%</div>
-                            <div className="stat-item">הימורים: {userData.totalBets}</div>
+                            <div className="stat-item">אחוז הצלחה: {userData?.winRate}%</div>
+                            <div className="stat-item">הימורים: {userData?.totalBets}</div>
                         </div>
                     </div>
                 </div>
@@ -68,12 +68,12 @@ const UserProfile = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {betHistory && betHistory.map((bet, index) => (
+                        {userData?.betHistory && userData.betHistory.map((bet, index) => (
                             <tr key={index}>
-                                <td>{bet.date}</td>
-                                <td>{bet.game}</td>
-                                <td>{bet.bet}</td>
-                                <td className={bet.result === 'זכייה' ? 'result-win' : 'result-loss'}>
+                                <td className='plain-text'>{bet.date}</td>
+                                <td className='plain-text'>{bet.game}</td>
+                                <td className='plain-text'>{bet.bet}</td>
+                                <td className={bet.result === bet.bet ? 'result-win' : 'result-loss'}>
                                     {bet.result}
                                 </td>
                                 <td className={bet.points.startsWith('+') ? 'points-positive' : 'points-negative'}>

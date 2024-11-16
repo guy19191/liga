@@ -1,56 +1,25 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './rules.css';
 import BottomMenu from "./BottomMenu";
+import {axiosInstance} from "../store/request";
 
 const RulesComponent = () => {
     const [expandedSection, setExpandedSection] = useState(null);
+    const [rulesData, setRulesData] = useState([]);
 
-    const rulesData = [
-        {
-            id: 1,
-            title: "חוקים כלליים",
-            icon: "📜",
-            rules: [
-                "חוק לדוגמה 1",
-                "חוק לדוגמה 2",
-                "חוק לדוגמה 3",
-            ]
-        },
-        {
-            id: 2,
-            title: "מערכת הניקוד",
-            icon: "🎯",
-            rules: [
-                "חוק ניקוד 1",
-                "חוק ניקוד 2",
-                "חוק ניקוד 3",
-            ]
-        },
-        {
-            id: 3,
-            title: "ניחושים והגבלות",
-            icon: "⚖️",
-            rules: [
-                "הגבלה 1",
-                "הגבלה 2",
-                "הגבלה 3",
-            ]
-        },
-        {
-            id: 4,
-            title: "פרסים ועונשים",
-            icon: "🏆",
-            rules: [
-                "חוק פרסים 1",
-                "חוק פרסים 2",
-                "חוק פרסים 3",
-            ]
-        }
-    ];
+    useEffect(() => {
+        fetchRules();
+    }, []);
+
+    const fetchRules = async ()  => {
+        const rules = await axiosInstance.get('/rules/v1/getRules')
+        setRulesData(rules.data)
+    }
 
     const toggleSection = (id) => {
         setExpandedSection(expandedSection === id ? null : id);
     };
+
 
     return (
         <div className="rules-container">

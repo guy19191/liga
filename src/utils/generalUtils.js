@@ -15,7 +15,7 @@ const timestampToDateTime = (timestamp) => {
     const minutes = String(dateObject.getMinutes()).padStart(2, '0');
 
 // Format back to "year/month/day hour:minute"
-    return `${year}/${month}/${day} ${hours}:${minutes}`;
+    return ` ${hours}:${minutes} ${day}/${month}/${year}`;
 };
 
 export {setLocalEnvs, dateToTimestamp, timestampToDateTime}

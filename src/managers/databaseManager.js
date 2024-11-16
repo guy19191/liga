@@ -27,7 +27,7 @@ export class databaseManager {
 
     queryUsers = (username) => this.pool.query(`SELECT * FROM public.users WHERE username='${username}'`);
 
-    queryUserBets = (id) => this.pool.query(`SELECT usersbets.betid, usersbets.points, usersbets.howwins, usersbets.win FROM usersbets INNER JOIN bets ON "bets".id=usersbets.betid WHERE usersbets.userid='${id}' AND bets.expired=false`);
+    queryUserBets = (id, expired= false) => this.pool.query(`SELECT usersbets.betid, usersbets.points, usersbets.howwins, usersbets.win, "bets"."howWins","bets"."betName", "bets".date FROM usersbets INNER JOIN bets ON "bets".id=usersbets.betid WHERE usersbets.userid='${id}' AND bets.expired=${expired}`);
 
     queryUserBetsByBetId = (id) => this.pool.query(`SELECT usersbets.betid, usersbets.points, usersbets.howwins, usersbets.win, usersbets.userid, "ligaUsers".leagueid FROM usersbets INNER JOIN "ligaUsers" ON "ligaUsers".id=usersbets.userid INNER JOIN bets ON "bets".id=usersbets.betid  WHERE usersbets.betid='${id}'`);
 
@@ -37,6 +37,8 @@ export class databaseManager {
     updateUserBetWin = (betId, userId, win) => this.pool.query(
         `UPDATE public.usersbets SET "win"=${win} WHERE betid='${betId}' AND userid='${userId}'`);
 
+    insertLeague = (name, communityId='test') => this.pool.query(
+        this.pool.query(`INSERT INTO public.leagues(id, name, communityid) VALUES ('${v6()}', '${name}', '${communityId}')`));
     queryLigaUsers = (id) => this.pool.query(`SELECT "ligaUsers".points, "ligaUsers".leagueid, "ligaUsers".nickname, users."firstName", users."lastName" FROM "ligaUsers" INNER JOIN users ON "ligaUsers".id=users.id WHERE users.id='${id}'`);
     queryLigaUsersByLeague = (leagueId) => this.pool.query(`SELECT "ligaUsers".points, "ligaUsers".nickname FROM "ligaUsers" WHERE leagueid='${leagueId}'`);
     queryLeagueById = (id) => this.pool.query(`SELECT name FROM public.leagues WHERE id='${id}'`)
@@ -44,8 +46,6 @@ export class databaseManager {
     queryTeams = (communityId = 0) => this.pool.query(`SELECT * FROM public.teams WHERE communityId=${communityId}`);
     queryBets = (communityId = 0) => this.pool.query(`SELECT * FROM public.bets WHERE expired=false AND communityId=${communityId}`);
     queryBetsById = (id) => this.pool.query(`SELECT "howWins", disable FROM public.bets WHERE id='${id}'`);
-
-    queryBetsHistory = (communityId = 0) => this.pool.query(`SELECT * FROM public.bets WHERE expired=true AND communityId=${communityId}`);
 
     insertTeam = (name, image, communityId = 0) => this.pool.query(
         `INSERT INTO public.teams(name, communityid, image, id)	VALUES ('${name}', ${communityId}, '${image}', '${v6()}')`);
