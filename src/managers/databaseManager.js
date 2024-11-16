@@ -14,7 +14,7 @@ export class databaseManager {
             database: process.env.DATABASE,
             password: process.env.PASSWORD,
             port: process.env.DB_PORT,
-            ssl: { rejectUnauthorized: false }
+            ssl: Boolean(process.env.SSL)
         })
     }
 
