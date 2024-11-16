@@ -1,0 +1,255 @@
+/* Main Container */
+.profile-container {
+    width: 100%;
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 1rem;
+    direction: rtl;
+}
+
+/* Card Styles */
+.profile-card {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+/* Header Section */
+.profile-header {
+    padding: 1.5rem;
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    border-radius: 0.75rem 0.75rem 0 0;
+    color: white;
+}
+
+.profile-main-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.profile-name-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.profile-nickname {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.edit-button {
+    background: none;
+    border: none;
+    color: #93c5fd;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s;
+}
+
+.edit-button:hover {
+    color: white;
+}
+
+/* Edit Mode */
+.edit-mode-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.edit-input {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #e5e7eb;
+    font-size: 1rem;
+}
+
+.save-button,
+.cancel-button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.save-button {
+    background-color: #22c55e;
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #16a34a;
+}
+
+.cancel-button {
+    background-color: #6b7280;
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #4b5563;
+}
+
+/* League Selection */
+.league-select {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #e5e7eb;
+    background-color: white;
+    margin-right: 1rem;
+}
+
+/* Stats Section */
+.stats-section {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+    color: #e5e7eb;
+}
+
+/* Personal Info Section */
+.personal-info {
+    padding: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.info-label {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.info-value {
+    color: #111827;
+    font-size: 1rem;
+}
+
+/* Bet History Section */
+.bet-history {
+    padding: 1.5rem;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.history-table th {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-weight: 600;
+    padding: 0.75rem;
+    text-align: right;
+}
+
+.history-table tr {
+    transition: background-color 0.2s;
+}
+
+.history-table tr:hover {
+    background-color: #f9fafb;
+}
+
+.history-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.result-win {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+.result-loss {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.points-positive {
+    color: #22c55e;
+    font-weight: 600;
+}
+
+.points-negative {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 0.5rem;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-main-info {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .stats-section {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .history-table {
+        font-size: 0.875rem;
+    }
+
+    .history-table th,
+    .history-table td {
+        padding: 0.5rem;
+    }
+}
+
+/* Loading States */
+.shimmer {
+    background: linear-gradient(
+            90deg,
+            #f3f4f6 0%,
+            #e5e7eb 50%,
+            #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}

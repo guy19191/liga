@@ -1,0 +1,104 @@
+.winning-status {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+/* Base styles for all status indicators */
+.winning-status > div {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.winning-status span {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    white-space: nowrap;
+}
+
+/* Winning state */
+.winning-status .text-green-700 {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.winning-status .text-green-700:hover {
+    background-color: #bbf7d0;
+}
+
+/* Losing state */
+.winning-status .text-red-700 {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.winning-status .text-red-700:hover {
+    background-color: #fecaca;
+}
+
+/* Pending state */
+.winning-status .text-blue-700 {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.winning-status .text-blue-700:hover {
+    background-color: #bfdbfe;
+}
+
+/* Animation for the loading spinner */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* RTL Support */
+[dir="rtl"] .winning-status {
+    margin-right: 0;
+    margin-left: 0.75rem;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .winning-status {
+        margin-right: 0;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+
+    .winning-status > div {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .winning-status span {
+        font-size: 0.75rem;
+    }
+}
+
+/* Accessibility - Focus States */
+.winning-status:focus-within {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    border-radius: 9999px;
+}
+
+/* High Contrast Mode Support */
+@media (forced-colors: active) {
+    .winning-status > div {
+        border: 1px solid currentColor;
+    }
+}

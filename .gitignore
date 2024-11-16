@@ -1,3 +1,4 @@
 /node_modules/*
 /development.env
 /.idea
+/src/client/node_modules/

@@ -1,0 +1,189 @@
+/* Main Container */
+.events-page {
+    min-height: 100vh;
+    padding-bottom: 80px; /* Space for bottom menu */
+}
+
+/* Top Menu Area */
+.top-menu {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+}
+
+/* Main Content Container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    direction: rtl;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 1.5rem 0;
+    padding: 0 0.5rem;
+}
+
+/* Events List Container */
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 4rem; /* Extra space for bottom menu */
+}
+
+/* Loading State */
+.loading-skeleton {
+    background: linear-gradient(
+            90deg,
+            #f3f4f6 0%,
+            #e5e7eb 50%,
+            #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 0.5rem;
+    height: 120px;
+    margin-bottom: 1rem;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state-text {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state-subtext {
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+/* Scroll Animation */
+.event-enter {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.event-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms ease-in, transform 300ms ease-out;
+}
+
+/* Error State */
+.error-state {
+    text-align: center;
+    padding: 2rem;
+    color: #ef4444;
+    background-color: #fee2e2;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+/* Refresh Button */
+.refresh-button {
+    position: fixed;
+    bottom: 80px; /* Above bottom menu */
+    right: 1rem;
+    background-color: #2563eb;
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    z-index: 90;
+}
+
+.refresh-button:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.05);
+}
+
+.refresh-button:active {
+    transform: scale(0.95);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    .page-title {
+        font-size: 1.25rem;
+        margin: 1rem 0;
+    }
+
+    .events-list {
+        gap: 0.75rem;
+    }
+
+    .refresh-button {
+        width: 2.5rem;
+        height: 2.5rem;
+        bottom: 70px;
+    }
+}
+
+/* Transitions */
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 200ms ease-out;
+}
+
+/* Pull to Refresh Animation */
+@keyframes pullToRefresh {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.refreshing-spinner {
+    animation: pullToRefresh 1s linear infinite;
+}

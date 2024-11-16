@@ -1,0 +1,176 @@
+/* Main Container */
+.league-table-container {
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    direction: rtl;
+}
+
+/* Header */
+.league-header {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.league-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+/* Table Container */
+.table-container {
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+/* Table Styles */
+.rankings-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Table Headers */
+.rankings-table th {
+    background-color: #f3f4f6;
+    color: #4b5563;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: right;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.rankings-table th:first-child {
+    border-radius: 0 0.5rem 0 0;
+}
+
+.rankings-table th:last-child {
+    border-radius: 0.5rem 0 0 0;
+}
+
+/* Table Body */
+.rankings-table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.rankings-table tbody tr:hover {
+    background-color: #f9fafb;
+    transform: translateX(-2px);
+}
+
+/* Table Cells */
+.rankings-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Position Column */
+.position-cell {
+    font-weight: 600;
+    color: #6b7280;
+    width: 60px;
+}
+
+/* Nickname Column */
+.nickname-cell {
+    font-weight: 500;
+    color: #111827;
+}
+
+/* Points Column */
+.points-cell {
+    font-weight: 600;
+    color: #2563eb;
+}
+
+/* Top 3 Positions Styling */
+.rankings-table tr:nth-child(1) {
+    background-color: rgba(250, 204, 21, 0.1);
+}
+
+.rankings-table tr:nth-child(1) .position-cell {
+    color: #d97706;
+}
+
+.rankings-table tr:nth-child(2) {
+    background-color: rgba(226, 232, 240, 0.3);
+}
+
+.rankings-table tr:nth-child(2) .position-cell {
+    color: #64748b;
+}
+
+.rankings-table tr:nth-child(3) {
+    background-color: rgba(234, 88, 12, 0.1);
+}
+
+.rankings-table tr:nth-child(3) .position-cell {
+    color: #c2410c;
+}
+
+/* Hover Effects for Top 3 */
+.rankings-table tr:nth-child(1):hover {
+    background-color: rgba(250, 204, 21, 0.2);
+}
+
+.rankings-table tr:nth-child(2):hover {
+    background-color: rgba(226, 232, 240, 0.4);
+}
+
+.rankings-table tr:nth-child(3):hover {
+    background-color: rgba(234, 88, 12, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .league-table-container {
+        margin: 0.5rem;
+        border-radius: 0.5rem;
+    }
+
+    .league-header {
+        padding: 1rem;
+    }
+
+    .league-title {
+        font-size: 1.25rem;
+    }
+
+    .rankings-table th,
+    .rankings-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .position-cell {
+        width: 40px;
+    }
+}
+
+/* Loading State */
+.loading-shimmer {
+    background: linear-gradient(
+            90deg,
+            #f3f4f6 0%,
+            #e5e7eb 50%,
+            #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
