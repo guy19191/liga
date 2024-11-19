@@ -4,9 +4,13 @@ import {dateToTimestamp, timestampToDateTime} from "../utils/index.js";
 
 export class BetsManager {
      constructor(communityId = 0) {
+         // Get the current date and time in Israel's time zone
+         const israelTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Jerusalem" });
+        // Convert it to a timestamp
+         const israelTimestamp = new Date(israelTime).getTime();
         databaseManager.getInstance().queryBets(communityId).then(betQuery => {
             betQuery.rows.filter(bet => !Boolean(bet.disabled)).forEach(bet => {
-                setTimeout(() => this.disableBet(bet.id), Number(bet.date) - new Date().getTime());
+                setTimeout(() => this.disableBet(bet.id), Number(bet.date) - israelTimestamp);
             });
         });
     }
@@ -21,7 +25,11 @@ export class BetsManager {
     async setBet(teamA, teamB, dateTime, betName, communityId){
         const timestamp = dateToTimestamp(dateTime)
         const id = await databaseManager.getInstance().insertBet(teamA, teamB, timestamp, betName, communityId);
-        setTimeout(() => this.disableBet(id), timestamp - new Date().getTime());
+        // Get the current date and time in Israel's time zone
+        const israelTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Jerusalem" });
+        // Convert it to a timestamp
+        const israelTimestamp = new Date(israelTime).getTime();
+        setTimeout(() => this.disableBet(id), timestamp - israelTimestamp);
     }
 
     async setUserBets(id, points, team, token){
