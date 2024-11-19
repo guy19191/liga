@@ -24,7 +24,7 @@ async function run(){
     app.use(cors());
 
     app.use('/auth', authRoutes);
-    app.use('/rules', managerMiddleware, rulesRouter);
+    app.use('/gameRules', authMiddleware, rulesRouter);
     app.use('/betsManager', managerMiddleware, betsManagerRoutes);
     app.use('/ligaUser', authMiddleware, ligaUsersRoutes);
     app.use('/bets', authMiddleware ,betsRoutes);
