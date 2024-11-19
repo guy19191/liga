@@ -20,7 +20,6 @@ const RulesComponent = () => {
         setExpandedSection(expandedSection === id ? null : id);
     };
 
-
     return (
         <div className="rules-container">
             {/* Header */}
