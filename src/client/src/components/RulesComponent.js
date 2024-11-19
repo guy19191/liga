@@ -12,7 +12,7 @@ const RulesComponent = () => {
     }, []);
 
     const fetchRules = async ()  => {
-        const rules = await axiosInstance.get('/rules/v1/getRules')
+        const rules = await axiosInstance.get('/gameRules/v1/getRules')
         setRulesData(rules.data)
     }
 
