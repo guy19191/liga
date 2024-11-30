@@ -27,11 +27,11 @@ export class LigaUsersManager {
             const userExpiredBets = await databaseManager.getInstance().queryUserBets(userId, true);
             let winRate = 0
             user.betHistory = userExpiredBets.rows.map(bet => {
-                let points = bet.points
+                let points = Number(bet.points)
                 const date = timestampToDateTime(bet.date);
                 if (bet.howwins === bet.howWins){
                     winRate ++;
-                    points *= number(bet.win);
+                    points *= Number(bet.win);
                 }
                 return {
                     date: date,
