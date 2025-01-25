@@ -42,7 +42,7 @@ export class LigaUsersManager {
                 }
             });
             user.totalBets =  userExpiredBets.rows.length.toString();
-            user.winRate = ((winRate / user.totalBets)/100).toString();
+            user.winRate = ((winRate / user.totalBets)*100).toString();
             return user;
         } catch (e) {
             return {};
