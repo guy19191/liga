@@ -76,7 +76,7 @@ const UserProfile = () => {
                                 <td className={bet.result === bet.bet ? 'result-win' : 'result-loss'}>
                                     {bet.result}
                                 </td>
-                                <td className={bet.points.startsWith('+') ? 'points-positive' : 'points-negative'}>
+                                <td className={bet.result === bet.bet ?  'points-positive' : 'points-negative'}>
                                     {bet.points}
                                 </td>
                             </tr>
